@@ -1,73 +1,98 @@
-# orbitalops-dashboard
+## OrbitalOps Dashboard
 
-This template should help get you started developing with Vue 3 in Vite.
+OrbitalOps Dashboard is a Vue + TypeScript satellite operations dashboard for monitoring simulated spacecraft health, alerts, telemetry, and ground-station contact windows.
 
-## Recommended IDE Setup
+This project was built to practice and demonstrate frontend engineering skills relevant to operational web applications, including SPA routing, GraphQL API integration, data-heavy UI components, and automated testing.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Recommended Browser Setup
+- Satellite fleet dashboard with current status (normal, warning, or critical) metrics
+- Status filtering
+- Satellite detail pages with telemetry, alerts, and contact windows
+- GraphQL API served locally with GraphQL Yoga
+- Apollo Client integration on the Vue frontend
+- Vue Router-based SPA navigation
+- Unit/component tests with Vitest
+- E2E browser tests with Playwright
+- TypeScript, ESLint, and Prettier for maintainability
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Tech Stack
 
-## Type Support for `.vue` Imports in TS
+Vue.js, Vue Router, Typescript, GraphQL, Apollo Client, GraphQL
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Customize configuration
+## Running Locally
 
 See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
+Install Dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Run the project- this will run both the client and the server.
+The Vue frontend runs at: http://localhost:5173
+The GraphQL server runs at: http://localhost:4000/graphql
+
+```sh
+npm run dev:all
+```
+
+To run the frontend only (use this only if the GraphQL server is already running separately):
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+To run the backend only:
 
 ```sh
-npm run build
+npm run server
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Example GraphQL query
+
+```graphql
+query {
+  satellites {
+    id
+    name
+    status
+    batteryPercent
+    temperatureC
+    signalStrengthDb
+  }
+}
+```
+
+### Running tests
+
+Running E2E tests
+
+```sh
+npm run test:e2e
+```
+
+Running Unit Tests
+
+```sh
+npx playwright test --ui
+```
+
+You may need this installed:
+
+```sh
+npx playwright install
+```
+
+# Recommended commands before committing changes
 
 ```sh
 npm run test:unit
-```
-
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
 npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
+npm run type-check
 npm run lint
+npm run build
 ```
