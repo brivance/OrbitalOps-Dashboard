@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import SatelliteTable from '../components/SatelliteTable.vue'
+import { filterSatellitesByStatus } from '../utils/filterSatellites'
 import { apolloClient } from '../graphql/apollo'
 import { GET_SATELLITES } from '../graphql/queries'
 import type { GetSatellitesResponse, Satellite, SatelliteStatus } from '../types/satellite'
@@ -10,10 +11,9 @@ const loading = ref(true)
 const errorMessage = ref<string | null>(null)
 const statusFilter = ref<'ALL' | SatelliteStatus>('ALL')
 
-const filteredSatellites = computed(() => {
-  if (statusFilter.value === 'ALL') return satellites.value
-  return satellites.value.filter((satellite) => satellite.status === statusFilter.value)
-})
+const filteredSatellites = computed(() =>
+  filterSatellitesByStatus(satellites.value, statusFilter.value),
+)
 
 const criticalCount = computed(
   () => satellites.value.filter((satellite) => satellite.status === 'CRITICAL').length,
@@ -141,8 +141,18 @@ onMounted(async () => {
 
 .dashboard::after {
   background:
-    linear-gradient(115deg, transparent 0 48%, rgba(148, 163, 184, 0.14) 48.2% 48.6%, transparent 49%),
-    linear-gradient(150deg, transparent 0 62%, rgba(45, 212, 191, 0.12) 62.1% 62.5%, transparent 63%),
+    linear-gradient(
+      115deg,
+      transparent 0 48%,
+      rgba(148, 163, 184, 0.14) 48.2% 48.6%,
+      transparent 49%
+    ),
+    linear-gradient(
+      150deg,
+      transparent 0 62%,
+      rgba(45, 212, 191, 0.12) 62.1% 62.5%,
+      transparent 63%
+    ),
     linear-gradient(to bottom, rgba(3, 7, 18, 0.18), rgba(3, 7, 18, 0.76));
 }
 
