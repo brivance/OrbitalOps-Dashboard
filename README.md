@@ -4,6 +4,8 @@ OrbitalOps Dashboard is a Vue + TypeScript satellite operations dashboard for mo
 
 This project was built to practice and demonstrate frontend engineering skills relevant to operational web applications, including SPA routing, GraphQL API integration, data-heavy UI components, and automated testing.
 
+![Dashboard](screenshots/orbitalops-dashboard.png)
+
 ## Features
 
 - Satellite fleet dashboard with current status (normal, warning, or critical) metrics
