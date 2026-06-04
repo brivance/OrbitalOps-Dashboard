@@ -1,20 +1,20 @@
 ## OrbitalOps Dashboard
 
-OrbitalOps Dashboard is a Vue + TypeScript satellite operations dashboard for monitoring simulated spacecraft health, alerts, telemetry, and ground-station contact windows.
+OrbitalOps Dashboard is a Vue satellite operations dashboard for monitoring simulated spacecraft health, alerts, telemetry, and ground-station contact windows.
 
-This project was built to practice and demonstrate frontend engineering skills relevant to operational web applications, including SPA routing, GraphQL API integration, data-heavy UI components, and automated testing.
+This project was built to practice and demonstrate frontend engineering skills relevant to operational web apps, including SPA routing, GraphQL API integration, UI components managing data, and automated testing.
 
 ![Dashboard](screenshots/orbitalops-dashboard.png)
 
 ## Features
 
-- Satellite fleet dashboard with current status (normal, warning, or critical) metrics
+- Satellite dashboard with current status (normal, warning, or critical) metrics
 - Status filtering
-- Satellite detail pages with telemetry, alerts, and contact windows
-- GraphQL API served locally with GraphQL Yoga
+- Individual satellite detail pages with telemetry, alerts, and contact windows with ground locations
+- GraphQL API served locally (using GraphQL Yoga)
 - Apollo Client integration on the Vue frontend
-- Vue Router-based SPA navigation
-- Unit/component tests with Vitest
+- Vue Router used for SPA navigation
+- Unit tests with Vitest
 - E2E browser tests with Playwright
 - TypeScript, ESLint, and Prettier for maintainability
 
@@ -22,11 +22,7 @@ This project was built to practice and demonstrate frontend engineering skills r
 
 Vue.js, Vue Router, Typescript, GraphQL, Apollo Client, GraphQL
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
 ## Running Locally
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 Install Dependencies
 
@@ -98,3 +94,5 @@ npm run type-check
 npm run lint
 npm run build
 ```
+
+Enjoy!
