@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Satellite } from '../types/satellite'
+import { RouterLink } from 'vue-router'
 defineProps<{
   satellites: Satellite[]
 }>()
@@ -21,7 +22,11 @@ defineProps<{
 
     <tbody>
       <tr v-for="satellite in satellites" :key="satellite.id">
-        <td>{{ satellite.name }}</td>
+        <td>
+          <RouterLink class="satellite-link" :to="`/satellites/${satellite.id}`">
+            {{ satellite.name }}
+          </RouterLink>
+        </td>
         <td>{{ satellite.mission }}</td>
         <td>{{ satellite.orbit }}</td>
         <td>
@@ -46,7 +51,7 @@ table {
 th,
 td {
   padding: 14px 20px;
-  border-bottom: 1px solid #1f2937;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   text-align: left;
 }
 
@@ -77,5 +82,15 @@ th {
 .status.critical {
   background: #7f1d1d;
   color: #fecaca;
+}
+
+.satellite-link {
+  color: #bfdbfe;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.satellite-link:hover {
+  text-decoration: underline;
 }
 </style>

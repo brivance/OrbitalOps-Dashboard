@@ -94,9 +94,15 @@ onMounted(async () => {
 
 <style scoped>
 .dashboard {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   padding: 48px;
-  background: #0f172a;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(56, 189, 248, 0.2), transparent 28%),
+    radial-gradient(circle at 78% 8%, rgba(217, 70, 239, 0.16), transparent 26%),
+    linear-gradient(135deg, #030712 0%, #10172a 48%, #111827 100%);
   color: #e5e7eb;
   font-family:
     Inter,
@@ -106,6 +112,38 @@ onMounted(async () => {
     BlinkMacSystemFont,
     'Segoe UI',
     sans-serif;
+}
+
+.dashboard::before,
+.dashboard::after {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  pointer-events: none;
+}
+
+.dashboard::before {
+  opacity: 0.74;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1px),
+    radial-gradient(circle, rgba(125, 211, 252, 0.75) 0 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.55) 0 1px, transparent 1px);
+  background-position:
+    0 0,
+    24px 36px,
+    72px 18px;
+  background-size:
+    92px 92px,
+    138px 138px,
+    176px 176px;
+}
+
+.dashboard::after {
+  background:
+    linear-gradient(115deg, transparent 0 48%, rgba(148, 163, 184, 0.14) 48.2% 48.6%, transparent 49%),
+    linear-gradient(150deg, transparent 0 62%, rgba(45, 212, 191, 0.12) 62.1% 62.5%, transparent 63%),
+    linear-gradient(to bottom, rgba(3, 7, 18, 0.18), rgba(3, 7, 18, 0.76));
 }
 
 .hero {
@@ -146,9 +184,11 @@ h1 {
 
 .metric-card,
 .panel {
-  border: 1px solid #334155;
-  border-radius: 16px;
-  background: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.76);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
 }
 
 .metric-card {
@@ -176,13 +216,13 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.24);
 }
 
 select {
-  border: 1px solid #475569;
+  border: 1px solid rgba(148, 163, 184, 0.4);
   border-radius: 8px;
-  background: #020617;
+  background: rgba(2, 6, 23, 0.88);
   color: #e5e7eb;
   padding: 8px 12px;
 }

@@ -141,6 +141,20 @@ const typeDefs = /* GraphQL */ `
 const resolvers = {
   Query: {
     satellites: () => satellites,
+
+    satelliteDetail: (_parent: unknown, args: { id: string }) => {
+      const satellite = satellites.find((item) => item.id === args.id)
+
+      if (!satellite) {
+        return null
+      }
+
+      return {
+        satellite,
+        alerts: alerts.filter((alert) => alert.satelliteId === args.id),
+        contactWindows: contactWindows.filter((window) => window.satelliteId === args.id),
+      }
+    },
   },
 }
 
